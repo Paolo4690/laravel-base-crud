@@ -2,6 +2,10 @@
 
 @section('PageTitle', 'Comics listing')
 
+@section('navbar')
+    @include('../partials.headerComic')
+@endsection
+
 @section('content')
     <main>
         <div class="container">

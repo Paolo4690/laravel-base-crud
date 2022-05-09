@@ -123,16 +123,17 @@ class ComicSeeder extends Seeder
             ],
         ];
         foreach ($comics as $comicData) {
-            $comic = new Comic();
-            $comic->title = $comicData['title'];
-            $comic->description = $comicData['description'];
-            $comic->thumb = $comicData['thumb'];
-            $comic->price = $comicData['price'];
-            $comic->series = $comicData['series'];
-            $comic->sale_date = $comicData['sale_date'];
-            $comic->type = $comicData['type'];
-            $comic->fill($comicData);
-            $comic->save();
+            // $comic = new Comic();
+            // $comic->title = $comicData['title'];
+            // $comic->description = $comicData['description'];
+            // $comic->thumb = $comicData['thumb'];
+            // $comic->price = $comicData['price'];
+            // $comic->series = $comicData['series'];
+            // $comic->sale_date = $comicData['sale_date'];
+            // $comic->type = $comicData['type'];
+            // $comic->fill($comicData);
+            // $comic->save();
+            Comic::create($comicData);
         }
     }
 }

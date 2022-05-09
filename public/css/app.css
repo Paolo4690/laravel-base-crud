@@ -12178,3 +12178,7 @@ nav ul.pagination {
   padding-top: 1rem;
 }
 
+header ul.nav {
+  justify-content: center;
+}
+
