@@ -9,9 +9,9 @@
 @section('content')
     <main>
         <div class="container">
-            <div class="row">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                 @foreach ($comics as $comic)
-                    <div class="col-3 g-4">
+                    <div class="col g-4">
                         <div class="card h-100">
                             <img class="card-img-top" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
                             <div class="card-body">
