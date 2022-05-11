@@ -1,11 +1,15 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
-nav {
-    ul.pagination {
-        justify-content: center;
-        padding-top: 1rem;
+main {
+    .cont-img {
+        flex: 0 0 30%;
     }
-}
-header ul.nav {
-    justify-content: center;
+    .cont-info {
+        flex: 0 0 70%;
+    }
+    form {
+        label {
+            padding-top: .4rem;
+        }
+    }
 }

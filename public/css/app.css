@@ -12173,12 +12173,15 @@ fieldset:disabled .btn {
   }
 }
 
-nav ul.pagination {
-  justify-content: center;
-  padding-top: 1rem;
+main .cont-img {
+  flex: 0 0 30%;
 }
 
-header ul.nav {
-  justify-content: center;
+main .cont-info {
+  flex: 0 0 70%;
+}
+
+main form label {
+  padding-top: 0.8rem;
 }
 
