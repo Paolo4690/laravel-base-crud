@@ -22,8 +22,6 @@
                         <a class="nav-link" href="{{ route('comics.create') }}">Add new Comic</a>
                     </li>
 
-
-
                 </ul>
                 <form class=" d-flex ms-auto fnavbar-text my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

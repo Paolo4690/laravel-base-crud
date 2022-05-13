@@ -1,17 +1,18 @@
 @extends('../templates/base')
 
-@section('PageTitle', 'Add Comics')
+@section('PageTitle', 'modify Comics')
 
 @section('content')
     <main>
         <div class="container">
 
-            <form class="my-3" action="{{ route('comics.store') }}" method="POST">
+            <form class="my-3" action="{{ route('comics.update', $comic->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
 
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="insert title new comic">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}">
                     @error('title')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -19,7 +20,7 @@
                     @enderror
 
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="insert description new comic">
+                    <input type="text" class="form-control" id="description" name="description" value="{{ $comic->description }}">
                     @error('description')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -27,7 +28,7 @@
                     @enderror
 
                     <label for="thumb">Link image</label>
-                    <input type="text" class="form-control" id="thumb" name="thumb" value="{{ old('thumb') }}" placeholder="insert link image new comic">
+                    <input type="text" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
                     @error('thumb')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -35,7 +36,7 @@
                     @enderror
 
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" placeholder="insert price new comic">
+                    <input type="text" class="form-control" id="price" name="price" value="{{ $comic->price }}">
                     @error('price')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -43,7 +44,7 @@
                     @enderror
 
                     <label for="series">Series</label>
-                    <input type="text" class="form-control" id="series" name="series" value="{{ old('series') }}" placeholder="insert series new comic">
+                    <input type="text" class="form-control" id="series" name="series" value="{{ $comic->series }}">
                     @error('series')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -51,7 +52,7 @@
                     @enderror
 
                     <label for="type">Type</label>
-                    <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" placeholder="insert type new comic">
+                    <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}">
                     @error('type')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}
@@ -60,8 +61,9 @@
 
                 </div>
                 <button type="submit" class="btn btn-success mt-3" onclick="return confirm('Are you sure to save this comic?')">Save</button>
-            </form>
 
+                <a class="btn btn-primary mt-3" href="{{ url()->previous() }}">Back</a>
+            </form>
         </div>
     </main>
 @endsection

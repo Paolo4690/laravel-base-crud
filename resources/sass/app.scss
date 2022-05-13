@@ -1,4 +1,11 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 main {
     .cont-img {
@@ -6,10 +13,6 @@ main {
     }
     .cont-info {
         flex: 0 0 70%;
-    }
-    form {
-        label {
-            padding-top: .4rem;
-        }
+        margin-left: 1rem;
     }
 }

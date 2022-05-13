@@ -7,82 +7,80 @@ use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $rules = [
+        'title' => 'required|:comics|max:100',
+        'description' => 'required',
+        'thumb' => 'required|max:250',
+        'price' => 'required|numeric',
+        'series' => 'required|max:50',
+        'type' => 'max:50'
+    ];
+    protected $rulesEdit = [
+        'title' => 'required|max:100',
+        'description' => 'required',
+        'thumb' => 'required|max:250',
+        'price' => 'required|numeric',
+        'series' => 'required|max:50',
+        'type' => 'max:50'
+    ];
+    protected $messages = [
+        'title.required' => 'The title field is required.',
+        'title.max' => 'The title may not be greater than 100 characters.',
+        'description.required' => 'The description field is required.',
+        'thumb.required' => 'The link of image field is required.',
+        'thumb.max' => 'The link of image may not be greater than 250 characters.',
+        'price.required' => 'The price field is required.',
+        'price.numeric' => 'The price must be a number.',
+        'series.required' => 'The series field is required.',
+        'series.max' => 'The series may not be greater than 50 characters.',
+        'type.max' => 'The type may not be greater than 50 characters.',
+    ];
+
     public function index()
     {
         $comics = Comic::paginate(8);
         return view('comics.index', compact('comics'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('comics.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $this->validate($request, $this->rules, $this->messages);
+
         $formData = $request->all();
+
         $newComic = Comic::create($formData);
         return redirect()->route('comics.show', $newComic->id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Comic  $comic
-     * @return \Illuminate\Http\Response
-     */
     public function show(Comic $comic)
     {
         return view('comics.show', compact('comic'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comic  $comic
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Comic $comic)
     {
-        //
+
+        return view('comics.edit', compact('comic'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comic  $comic
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Comic $comic)
     {
-        //
+
+        $this->validate($request, $this->rulesEdit, $this->messages);
+
+        $formData = $request->all();
+        $comic->update($formData);
+        return redirect()->route('comics.show', $comic->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Comic  $comic
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }
