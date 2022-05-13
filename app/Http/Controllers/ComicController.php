@@ -13,6 +13,7 @@ class ComicController extends Controller
         'thumb' => 'required|max:250',
         'price' => 'required|numeric',
         'series' => 'required|max:50',
+        'sale_date' => 'nullable|date',
         'type' => 'max:50'
     ];
     protected $rulesEdit = [
@@ -21,6 +22,7 @@ class ComicController extends Controller
         'thumb' => 'required|max:250',
         'price' => 'required|numeric',
         'series' => 'required|max:50',
+        'sale_date' => 'nullable|date',
         'type' => 'max:50'
     ];
     protected $messages = [
@@ -33,6 +35,7 @@ class ComicController extends Controller
         'price.numeric' => 'The price must be a number.',
         'series.required' => 'The series field is required.',
         'series.max' => 'The series may not be greater than 50 characters.',
+        'sale_date.date' => 'The sale date must be a date.',
         'type.max' => 'The type may not be greater than 50 characters.',
     ];
 

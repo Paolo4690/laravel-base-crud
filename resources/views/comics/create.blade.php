@@ -50,6 +50,14 @@
                         </div>
                     @enderror
 
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" name="sale_date" value="{{ old('sale_date') }}" placeholder="insert date of sale">
+                    @error('sale_date')
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
                     <label for="type">Type</label>
                     <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" placeholder="insert type new comic">
                     @error('type')
