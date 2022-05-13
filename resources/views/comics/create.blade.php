@@ -67,7 +67,7 @@
                     @enderror
 
                 </div>
-                <button type="submit" class="btn btn-success mt-3" onclick="return confirm('Are you sure to save this comic?')">Save</button>
+                <button type="submit" class="btn btn-success mt-3" id="saveComic">Save</button>
             </form>
 
         </div>

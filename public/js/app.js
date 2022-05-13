@@ -37270,6 +37270,11 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var saveComic = document.getElementById("saveComic");
+saveComic.addEventListener('click', function () {
+  confirm('Are you sure to save this comic?');
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
