@@ -10,15 +10,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item active">
+                    <li class="nav-item {{ Route::current()->getName() == 'home' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ Route::current()->getName() == 'comics.index' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('comics.index') }}">Comics listing</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ Route::current()->getName() == 'comics.create' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('comics.create') }}">Add new Comic</a>
                     </li>
 
