@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
     protected $rules = [
-        'title' => 'required|:comics|max:100',
+        'title' => 'required|unique:comics|max:100',
         'description' => 'required',
-        'thumb' => 'required|max:250',
+        'thumb' => 'required|url|max:250',
         'price' => 'required|numeric',
         'series' => 'required|max:50',
         'sale_date' => 'nullable|date',
@@ -19,7 +20,7 @@ class ComicController extends Controller
     protected $rulesEdit = [
         'title' => 'required|max:100',
         'description' => 'required',
-        'thumb' => 'required|max:250',
+        'thumb' => 'required|url|max:250',
         'price' => 'required|numeric',
         'series' => 'required|max:50',
         'sale_date' => 'nullable|date',
@@ -30,6 +31,7 @@ class ComicController extends Controller
         'title.max' => 'The title may not be greater than 100 characters.',
         'description.required' => 'The description field is required.',
         'thumb.required' => 'The link of image field is required.',
+        'thumb.url' => 'The link of image must be a valid URL.',
         'thumb.max' => 'The link of image may not be greater than 250 characters.',
         'price.required' => 'The price field is required.',
         'price.numeric' => 'The price must be a number.',
@@ -57,7 +59,7 @@ class ComicController extends Controller
         $formData = $request->all();
 
         $newComic = Comic::create($formData);
-        return redirect()->route('comics.show', $newComic->id);
+        return redirect()->route('comics.show', $newComic->id)->with('status', 'Completed with success!');
     }
 
     public function show(Comic $comic)
@@ -74,7 +76,13 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
     {
 
-        $this->validate($request, $this->rulesEdit, $this->messages);
+        $this->rules['title'] = [
+            'required',
+            Rule::unique('comics')->ignore($comic),
+            'max:100'
+        ];
+
+        $request->validate($this->rules);
 
         $formData = $request->all();
         $comic->update($formData);
@@ -84,6 +92,6 @@ class ComicController extends Controller
     public function destroy(Comic $comic)
     {
         $comic->delete();
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('deleted', 'Deleted comic id: ' . $comic->id);
     }
 }

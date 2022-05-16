@@ -37270,10 +37270,21 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-var saveComic = document.getElementById("saveComic");
-saveComic.addEventListener('click', function () {
-  confirm('Are you sure to save this comic?');
-});
+var confirmationOverlay = document.getElementById('confirmation-overlay');
+
+if (confirmationOverlay) {
+  var confirmationForm = confirmationOverlay.querySelector('form');
+  document.querySelector('.btn-delete').addEventListener('click', function () {
+    // mostrare l'overlay di conferma
+    confirmationOverlay.classList.remove('d-none');
+    confirmationForm.action = confirmationForm.dataset.base + '/' + this.dataset.id;
+  });
+  ;
+  document.getElementById('btn-no').addEventListener('click', function () {
+    confirmationForm.action = '';
+    confirmationOverlay.classList.add('d-none');
+  });
+}
 
 /***/ }),
 

@@ -28,7 +28,7 @@
                     @enderror
 
                     <label for="thumb">Link image</label>
-                    <input type="text" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
+                    <input type="url" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
                     @error('thumb')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}

@@ -6,6 +6,17 @@
     <main>
         <div class="container">
 
+            {{-- @if ($errors->any())
+                <div class="alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif --}}
+
             <form class="my-3" action="{{ route('comics.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -27,7 +38,7 @@
                     @enderror
 
                     <label for="thumb">Link image</label>
-                    <input type="text" class="form-control" id="thumb" name="thumb" value="{{ old('thumb') }}" placeholder="insert link image new comic">
+                    <input type="url" class="form-control" id="thumb" name="thumb" value="{{ old('thumb') }}" placeholder="insert link image new comic">
                     @error('thumb')
                         <div class="alert alert-danger mt-3" role="alert">
                             {{ $message }}

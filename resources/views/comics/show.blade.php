@@ -5,6 +5,9 @@
 @section('content')
     <main>
         <div class="container">
+            @if (session('status'))
+                <div class="alert alert-success">{{ session('status') }}</div>
+            @endif
             <div class="d-flex my-3">
                 <div class="cont-img">
                     <img class="w-100" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
@@ -21,13 +24,23 @@
 
             <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">Modify this comics</a>
 
-            <form class="d-inline" action="{{ route('comics.destroy' , $comic->id) }}" onclick="return confirm('Are you sure to delete?')" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete this comics</button>
-            </form>
+            <button class="btn btn-danger btn-delete" data-id="{{ $comic->id }}">Delete</button>
 
         </div>
+
+        <section id="confirmation-overlay" class="overlay d-none">
+            <div class="popup">
+                <h1>Sei sicuro di voler eliminare?</h1>
+                <div class="d-flex justify-content-center" style="gap: 1rem;">
+                    <button id="btn-no" class="btn btn-primary">NO</button>
+                    <form  method="POST" data-base="{{ route('comics.index') }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">SI</button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
     </main>
 

@@ -5,6 +5,11 @@
 @section('content')
     <main>
         <div class="container">
+
+            @if (session('deleted'))
+                <div class="alert alert-warning">{{ session('deleted') }}</div>
+            @endif
+
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                 @foreach ($comics as $comic)
                     <div class="col pb-4">
